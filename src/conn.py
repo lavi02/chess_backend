@@ -15,6 +15,9 @@ class manageConn:
 
         self.active_connections: List[WebSocket] = []
 
+    def connectionTest(self):
+        return self.active_connections
+
     async def connect(self, sio: WebSocket):
         await sio.accept()
         self.active_connections.append(sio)

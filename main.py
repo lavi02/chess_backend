@@ -8,9 +8,9 @@ async def endPoint(websocket: WebSocket):
     await connection.connect(websocket)
     try:
         while True:
-            data = await websocket.receive_json()
+            data = await websocket.receive_text()
 
-            await websocket.send_text(f"{data['data']}'s room number is {connection.room_number()}")
+            await websocket.send_text(f"{data}'s number is {connection.connectionTest()}")
     except:
         connection.disconnect(websocket)
 
