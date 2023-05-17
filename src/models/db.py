@@ -10,7 +10,7 @@ class engineConnect:
 
     def engineSession(self):
         session = sessionmaker(
-            bind=self.engine, autocommit=False, autoflush=False,)
+            bind=self.engine, autocommit=False, autoflush=False)
         Session = session()
 
         return Session
