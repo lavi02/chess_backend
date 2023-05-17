@@ -31,6 +31,9 @@ class manageConn:
 
         return roomNum
 
+    def getActiveRoom(self, roomNum: str):
+        return
+
     def getRandomRoom(self):
         if len(self.emptyRoom) != 0:
             return random.choice(list(self.emptyRoom.keys()))

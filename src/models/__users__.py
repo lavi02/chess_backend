@@ -16,8 +16,19 @@ class userTable(base):
     regDate = Column(DateTime(timezone=True), server_default=sql.func.now())
 
 
+class sessionController(base):
+    __tablename__ = "session"
+
+    id = Column(VARCHAR(16), nullable=False, primary_key=True)
+    code = Column(TEXT, nullable=False)
+
+
 def getUser(db: Session, id: str, pswd: str):
     return db.query(userTable).filter(userTable.id == id, userTable.pswd == pswd).first()
+
+
+def getSession(db: Session, id: str):
+    return db.query(sessionController).filter(sessionController.id == id).first()
 
 
 async def createUser(db: Session, id: str, pswd: str, email: str):
@@ -28,7 +39,7 @@ async def createUser(db: Session, id: str, pswd: str, email: str):
     )
 
     db.add(userData)
-    await db.commit()
+    db.commit()
     db.refresh(userData)
 
     return userData
